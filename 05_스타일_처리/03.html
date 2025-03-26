@@ -7,9 +7,7 @@
   </head>
   <body>
     <div id="app">
-      <button :style="style1" @mouseover="overEvent" @mouseout="outEvent">
-        테스트
-      </button>
+      <button :style="[myColor, myLayout]">테스트</button>
     </div>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script type="text/javascript">
@@ -17,24 +15,19 @@
 
       const app = createApp({
         setup() {
-          const style1 = reactive({
-            backgroundColor: 'aqua',
-            color: 'black',
+          const myColor = reactive({
+            backgroundColor: 'purple', // 배경색 보라색
+            color: 'yellow', // 글자색 노란색
+          });
+          const myLayout = reactive({
+            width: '150px',
+            height: '80px',
+            textAlign: 'center', // 텍스트 중앙 정렬
           });
 
-          const overEvent = () => {
-            style1.backgroundColor = 'purple';
-            style1.color = 'yellow';
-          };
-          const outEvent = () => {
-            style1.backgroundColor = 'aqua';
-            style1.color = 'black';
-          };
-
           return {
-            style1,
-            overEvent,
-            outEvent,
+            myColor,
+            myLayout,
           };
         },
       });

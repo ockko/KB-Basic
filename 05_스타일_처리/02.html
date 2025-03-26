@@ -7,32 +7,35 @@
   </head>
   <body>
     <div id="app">
-      <button :style="style1" @mouseover="overEvent" @mouseout="outEvent">
+      <button
+        :style="{backgroundColor, color}"
+        @mouseover="overEvent"
+        @mouseout="outEvent"
+      >
         테스트
       </button>
     </div>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script type="text/javascript">
-      const { createApp, reactive } = Vue;
+      const { createApp, ref } = Vue;
 
       const app = createApp({
         setup() {
-          const style1 = reactive({
-            backgroundColor: 'aqua',
-            color: 'black',
-          });
+          const backgroundColor = ref('aqua');
+          const color = ref('black');
 
           const overEvent = () => {
-            style1.backgroundColor = 'purple';
-            style1.color = 'yellow';
+            backgroundColor.value = 'purple';
+            color.value = 'yellow';
           };
           const outEvent = () => {
-            style1.backgroundColor = 'aqua';
-            style1.color = 'black';
+            backgroundColor.value = 'aqua';
+            color.value = 'black';
           };
 
           return {
-            style1,
+            backgroundColor,
+            color,
             overEvent,
             outEvent,
           };
