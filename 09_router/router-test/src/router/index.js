@@ -17,9 +17,27 @@ const router = createRouter({
       // 지연로딩 적용!
       component: () => import('@/pages/Home.vue'),
     },
+    // 중첩 라우트
+    // -> 라우트 내부에 라우트를 추가하는 방식
     {
       path: '/about',
       component: () => import('@/pages/About.vue'),
+      children: [
+        {
+          path: '',
+          redirect: '/about/class',
+        },
+        {
+          path: 'class',
+          name: 'class',
+          component: () => import('@/pages/about/Class.vue'),
+        },
+        {
+          path: 'goal',
+          name: 'goal',
+          component: () => import('@/pages/about/Goal.vue'),
+        },
+      ],
     },
     {
       path: '/members',
